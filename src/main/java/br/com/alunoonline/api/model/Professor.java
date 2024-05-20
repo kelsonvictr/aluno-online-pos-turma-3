@@ -14,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Entity
-public class Aluno implements Serializable {
+public class Professor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +25,5 @@ public class Aluno implements Serializable {
     private String email;
 
     private String cpf;
+
 }
