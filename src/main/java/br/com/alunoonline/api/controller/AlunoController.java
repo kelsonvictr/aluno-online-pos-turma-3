@@ -33,4 +33,14 @@ public class AlunoController {
     public Optional<Aluno> findById(@PathVariable Long id) {
         return alunoService.findById(id);
     }
+
+    // FAZER O CONTROLLER: PUT
+    // A RESPOSTA DEVE SER NO_CONTENT
+    // PRECISO DO ID IGUAL PRECISEI NO FINDBYID
+    // PRECISO DO ALUNO NO CORPO DA REQUISIÇÃO IGUAL PRECISEI NO CREATE
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Long id, @RequestBody Aluno aluno){
+        alunoService.update(id, aluno);
+    }
 }
