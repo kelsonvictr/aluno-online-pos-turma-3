@@ -60,5 +60,9 @@ public class AlunoService {
     // VOID
     // NÃO COLOQUEI O NOME DELETEBYID ATOA
     // SERÁ QUE O REPOSITORY GOSTA DESSE NOME TBM?  #)
+    // Faça tratamento para ver se o aluno existe no findbyid
+    public void deleteById(Long id) {
+        alunoRepository.deleteById(id);
+    }
 
 }
