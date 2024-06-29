@@ -31,6 +31,7 @@ public class AlunoController {
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Aluno> findAll() {
+
         return alunoService.findAll();
     }
 
@@ -38,6 +39,15 @@ public class AlunoController {
     @ResponseStatus(HttpStatus.OK)
     public Optional<Aluno> findById(@PathVariable Long id) {
         return alunoService.findById(id);
+    }
+
+    @GetMapping("/{email}/{cpf}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Aluno> buscarPorEmaileCpf(@PathVariable String email ,
+                                              @PathVariable String cpf) {
+        return Optional.of(
+                alunoService.buscarAlunoPorEmaileCpf(email, cpf)
+        );
     }
 
     // FAZER O CONTROLLER: PUT

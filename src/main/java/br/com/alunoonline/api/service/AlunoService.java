@@ -26,7 +26,11 @@ public class AlunoService {
 
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
+    }
 
+    public Aluno buscarAlunoPorEmaileCpf(String email,
+                                         String cpf){
+        return alunoRepository.buscarAlunoPorEmaileCpf(email, cpf);
     }
 
     public Optional<Aluno> findById(Long id) {

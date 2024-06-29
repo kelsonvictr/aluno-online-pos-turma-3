@@ -15,4 +15,14 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     List<Aluno> findByName(@Param("nome") String nome);
 
     List<Aluno> findAllByEmail(String email);
+
+    Aluno findAlunoByEmailAndCpf(String email, String cpf);
+
+    @Query("SELECT a FROM Aluno a where a.email=:email" +
+            " AND a.cpf=:cpf")
+    Aluno buscarAlunoPorEmaileCpf(@Param("email") String email,
+                                  @Param("cpf") String cpf);
+
+
+
 }
