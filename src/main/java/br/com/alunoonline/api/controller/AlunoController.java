@@ -2,6 +2,9 @@ package br.com.alunoonline.api.controller;
 
 import br.com.alunoonline.api.model.Aluno;
 import br.com.alunoonline.api.service.AlunoService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -9,17 +12,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
+@AllArgsConstructor
 @RestController
 @RequestMapping("/aluno")
 public class AlunoController {
 
-    @Autowired
-    AlunoService alunoService;
+    private AlunoService alunoService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Aluno aluno) {
+    public void create(@Valid  @RequestBody Aluno aluno) {
+        log.info("Iniciando criação de aluno");
         alunoService.create(aluno);
+        log.info("Encerrando criação de aluno");
     }
 
     @GetMapping("/all")

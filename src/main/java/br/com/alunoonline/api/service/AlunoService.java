@@ -2,6 +2,8 @@ package br.com.alunoonline.api.service;
 
 import br.com.alunoonline.api.model.Aluno;
 import br.com.alunoonline.api.repository.AlunoRepository;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,12 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
+
+@Slf4j
 @Service
+@AllArgsConstructor
 public class AlunoService {
 
-    @Autowired
     AlunoRepository alunoRepository;
 
     public void create(Aluno aluno) {
@@ -22,6 +26,7 @@ public class AlunoService {
 
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
+
     }
 
     public Optional<Aluno> findById(Long id) {
@@ -52,8 +57,8 @@ public class AlunoService {
 
         // PEGUEI A CÓPIA DO ALUNO ALTERADO NA MEMÓRIA RAM E DEVOLVI
         // ESSE ALUNO, AGORA, ATUALIZADO, PARA O BANCO DE DADOS.
-        alunoRepository.save(alunoUpdated);
 
+        alunoRepository.save(alunoUpdated);
     }
 
     // FAZER O DELETEBYID, ONDE O PARMETRO É SÓ O ID MESMO...
@@ -62,7 +67,9 @@ public class AlunoService {
     // SERÁ QUE O REPOSITORY GOSTA DESSE NOME TBM?  #)
     // Faça tratamento para ver se o aluno existe no findbyid
     public void deleteById(Long id) {
+        log.info("Iniciando exclusão de alunos");
         alunoRepository.deleteById(id);
+        log.info("Encerrando exclusão de alunos");
     }
 
 }
