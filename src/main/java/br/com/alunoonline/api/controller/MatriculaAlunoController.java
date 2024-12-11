@@ -4,15 +4,16 @@ import br.com.alunoonline.api.dtos.AtualizarNotasRequest;
 import br.com.alunoonline.api.dtos.HistoricoAlunoResponse;
 import br.com.alunoonline.api.model.MatriculaAluno;
 import br.com.alunoonline.api.service.MatriculaAlunoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/matricula-aluno")
 public class MatriculaAlunoController {
 
-    @Autowired
     MatriculaAlunoService matriculaAlunoService;
 
     @PostMapping

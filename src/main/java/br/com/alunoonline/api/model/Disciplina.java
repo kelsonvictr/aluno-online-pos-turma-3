@@ -11,12 +11,14 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "Disciplina")
 public class Disciplina implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 200)
     private String name;
 
     @ManyToOne

@@ -2,25 +2,30 @@ package br.com.alunoonline.api.service;
 
 import br.com.alunoonline.api.model.Disciplina;
 import br.com.alunoonline.api.repository.DisciplinaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
+@Slf4j
 public class DisciplinaService {
 
-    @Autowired
     DisciplinaRepository disciplinaRepository;
 
+    @CacheEvict(value = "lista_disciplinas", allEntries = true)
     public void create(Disciplina disciplina) {
         disciplinaRepository.save(disciplina);
     }
 
-    // UM MÉTODO FINDBYPROFESSORID QUE ACESSA A ASSINATURA QUE
-    // FOI FEITA NO REPOSITORY
-    // DICA: RETORNA UMA LIST<DISCIPLINA>
+
+    @Cacheable("lista_disciplinas")
     public List<Disciplina> findByProfessorId(Long professorId) {
+        log.info("Listando Disciplinas");
         return disciplinaRepository.findByProfessorId(professorId);
     }
 
